@@ -27,10 +27,10 @@ def treinamento(perc: Perceptron, parametrosLivres, taxaAprendizado, entradas, s
                 # Atualizar os parametros livres do perceptron
                 aux = [-1] + x[i]
                 for j in range(parametros.__len__()):
-                    parametros[j] = parametros[j] + n * (d[i] - y) * aux[j]
+                    parametros[j] += + n * (d[i] - y) * aux[j]
                 perc.ajustarParametrosLivres(parametros)
                 # Indicar presenca de erro
                 erro = True
-            # Incrementar o valor de epocas
-            epocas += 1
+        # Incrementar o valor de epocas
+        epocas += 1
     return epocas

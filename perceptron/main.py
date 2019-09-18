@@ -2,7 +2,7 @@ import random as rd
 import excel_operations as ex
 import treinamento_perceptron as tr
 import operacao_perceptron as op
-from perceptron import Perceptron
+from perceptron import Perceptron, funcaoDegrauBipolar
 
 N_ENTRADAS = 3
 N_TESTES = 5
@@ -11,9 +11,9 @@ ARQUIVO_TREINAMENTO = r'Treinamento_Perceptron.xls'
 ARQUIVO_TESTES = r'Teste_Perceptron.xls'
 
 def gerarParametrosIniciais(entradas):
-    lista = []
-    for i in range(entradas):
-        lista.append(rd.uniform(0, 1))
+    lista = [0.0] * entradas
+    for i in range(lista.__len__()):
+        lista[i] = rd.uniform(0, 1)
     return lista
 
 param_teste = []
@@ -38,7 +38,7 @@ saidas_treinamento = ex.getSaidasDesejadas(ARQUIVO_TREINAMENTO)
 # Inicializando os perceptrons de treinamento
 perceptrons = []
 for i in range(N_TESTES):
-    perceptrons.append(Perceptron([]))
+    perceptrons.append(Perceptron([], funcaoDegrauBipolar))
 
 # Realizando treinamento
 epocas = []

@@ -11,20 +11,20 @@ def funcaoDegrauBipolar(x):
 
 class Perceptron:
 
-    def __init__(self, w):
+    def __init__(self, w, g):
         self.w = w
+        self.g = g
 
     def funcaoAtivacao(self, u):
-        return funcaoDegrauBipolar(u)
+        return self.g(u)
 
     def calculaPotencialAtivacao(self, x):
         x = [-1] + x
         aux = []
+        soma = 0
         for i in range(self.w.__len__()):
             aux.append(self.w[i]*x[i])
-        soma = 0
-        for i in range(aux.__len__()):
-           soma += aux[i]
+            soma += aux[i]
         return soma
     
     def processarSaida(self, x):
