@@ -1,3 +1,4 @@
+import os
 import random as rd
 import excel_operations as ex
 from perceptron import Perceptron, funcaoDegrauBipolar
@@ -19,7 +20,13 @@ for i in range(N_TESTES):
     param_teste.append(gerarParametrosIniciais(N_ENTRADAS+1))
 
 # LOG DO TREINAMENTO
-f = open('treinamento.txt', 'w')
+dirname = 'output'
+try:
+    os.mkdir(dirname)
+    print('Diretorio ' + dirname + ' criado.')
+except FileExistsError:
+    print('Diretorio ' + dirname + ' ja existe.')
+f = open('output/treinamento.txt', 'w')
 f.write('PARAMETROS LIVRES DE TREINAMENTO INICIAIS\n')
 for i in range(N_TESTES):
     f.write('TREINAMENTO ' + str(i+1) + ': ')
@@ -44,7 +51,7 @@ for i in range(N_TESTES):
     epocas.append(perceptrons[i].treinamento(param_teste[i], TAXA_APRENDIZADO, entradas_treinamento, saidas_treinamento))
 
 # LOG DO TREINAMENTO
-f = open('treinamento.txt', 'a')
+f = open('output/treinamento.txt', 'a')
 f.write('\nPARAMETROS LIVRES FINAIS E NUMERO DE EPOCAS DE TREINAMENTO\n')
 for i in range(N_TESTES):
     f.write('TREINAMENTO ' + str(i+1) + ': ')
@@ -66,7 +73,7 @@ for i in range(N_AMOSTRAS):
         saidas[i].append(perceptrons[j].operacao(perceptrons[j].w, amostras[i]))
 
 # LOG DAS OPERACOES NAS AMOSTRAS
-f = open('treinamento.txt', 'a')
+f = open('output/treinamento.txt', 'a')
 f.write('\nRESULTADO DO PROCESSAMENTO DAS AMOSTRAS PELOS PERCEPTRONS TREINADOS\n')
 for i in range(N_AMOSTRAS):
     f.write('AMOSTRA ' + str(i+1) + ': ')
