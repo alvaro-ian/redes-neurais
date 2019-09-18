@@ -1,7 +1,5 @@
 import random as rd
 import excel_operations as ex
-import treinamento_perceptron as tr
-import operacao_perceptron as op
 from perceptron import Perceptron, funcaoDegrauBipolar
 
 N_ENTRADAS = 3
@@ -43,7 +41,7 @@ for i in range(N_TESTES):
 # Realizando treinamento
 epocas = []
 for i in range(N_TESTES):
-    epocas.append(tr.treinamento(perceptrons[i], param_teste[i], TAXA_APRENDIZADO, entradas_treinamento, saidas_treinamento))
+    epocas.append(perceptrons[i].treinamento(param_teste[i], TAXA_APRENDIZADO, entradas_treinamento, saidas_treinamento))
 
 # LOG DO TREINAMENTO
 f = open('treinamento.txt', 'a')
@@ -65,7 +63,7 @@ saidas = []
 for i in range(N_AMOSTRAS):
     saidas.append([])
     for j in range(N_TESTES):
-        saidas[i].append(op.operacao(perceptrons[j], perceptrons[j].w, amostras[i]))
+        saidas[i].append(perceptrons[j].operacao(perceptrons[j].w, amostras[i]))
 
 # LOG DAS OPERACOES NAS AMOSTRAS
 f = open('treinamento.txt', 'a')
